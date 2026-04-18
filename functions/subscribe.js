@@ -1,15 +1,12 @@
 export async function onRequestPost({ request, env }) {
   try {
     const { email } = await request.json();
-
     if (!email || !email.includes('@')) {
       return new Response(JSON.stringify({ error: 'Valid email is required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
-    // Store in Supabase
     const supabaseResponse = await fetch(`${env.SUPABASE_URL}/rest/v1/subscribers`, {
       method: 'POST',
       headers: {
@@ -23,10 +20,8 @@ export async function onRequestPost({ request, env }) {
         subscribed_at: new Date().toISOString()
       })
     });
-
     if (!supabaseResponse.ok) {
       const errorText = await supabaseResponse.text();
-      // Duplicate email is fine — already subscribed
       if (!errorText.includes('duplicate key') && !errorText.includes('unique')) {
         console.error('Supabase error:', errorText);
         return new Response(JSON.stringify({ error: 'Failed to subscribe' }), {
@@ -35,8 +30,6 @@ export async function onRequestPost({ request, env }) {
         });
       }
     }
-
-    // Email 1: Notify owner of new subscriber
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -44,7 +37,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-       from: 'Iyetu Barilogi <noreply@iyetubarilogi.pages.dev>',
+        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
         to: ['iyetubarilogi@gmail.com'],
         subject: 'New Newsletter Subscriber',
         html: `
@@ -55,8 +48,6 @@ export async function onRequestPost({ request, env }) {
         `
       })
     });
-
-    // Email 2: Welcome email to subscriber
     const welcomeResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -64,7 +55,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Iyetu Barilogi <onboarding@resend.dev>',
+        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
         to: [email],
         subject: 'Welcome to My Maintenance & Reliability Newsletter',
         html: `
@@ -86,17 +77,13 @@ export async function onRequestPost({ request, env }) {
         `
       })
     });
-
     if (!welcomeResponse.ok) {
       console.error('Resend welcome email error:', await welcomeResponse.text());
-      // Don't fail subscription if welcome email fails
     }
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
-
   } catch (error) {
     console.error('Subscribe function error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
