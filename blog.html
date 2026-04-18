@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog — Barilogi Iyetu writes on CMMS, reliability engineering, and industrial maintenance.">
+  <title>Blog — BARILOGI IYETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .blog-page-header {
+      padding: 130px 0 60px;
+      background: var(--navy-mid);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(245,166,35,0.15);
+    }
+    .blog-page-header::before {
+      content: '';
+      position: absolute;
+      right: -180px; top: -180px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .blog-page-header .blog-eyebrow {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--amber);
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .blog-page-header .blog-eyebrow::before {
+      content: ''; width: 32px; height: 2px; background: var(--amber);
+    }
+    .blog-page-header h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--pure);
+      letter-spacing: -0.01em;
+    }
+    .blog-page-header h1 span { color: var(--amber); }
+    .blog-page-header p {
+      color: var(--steel-light);
+      max-width: 560px;
+      font-size: 1rem;
+      margin-top: 12px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 2px;
+      border: 1px solid rgba(245,166,35,0.25);
+      background: transparent;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: var(--steel-light);
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--navy);
+    }
+
+    /* Posts grid */
+    .all-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 22px;
+    }
+    .post-list-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(245,166,35,0.12);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex; flex-direction: column;
+      text-decoration: none;
+    }
+    .post-list-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+    .post-list-card-img {
+      width: 100%; height: 180px;
+      background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(17,34,64,0.9));
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .post-list-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .post-list-card-img .img-mono {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 5rem; font-weight: 800;
+      color: var(--amber); opacity: 0.12;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .post-list-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .blog-cat-tag {
+      display: inline-block;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--amber); border: 1px solid rgba(245,166,35,0.3);
+      padding: 3px 10px; border-radius: 2px; margin-bottom: 10px;
+    }
+    .post-list-body h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem; font-weight: 700; line-height: 1.25;
+      margin-bottom: 8px; color: var(--pure); text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .post-list-exc {
+      font-size: 13px; color: var(--steel-light);
+      line-height: 1.75; flex: 1; margin-bottom: 16px; font-weight: 300;
+    }
+    .post-list-foot {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .post-list-meta {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px; color: var(--steel); letter-spacing: .3px;
+    }
+    .read-link {
+      color: var(--amber); font-size: 10px; font-weight: 600;
+      display: flex; align-items: center; gap: 5px;
+      font-family: 'Roboto Mono', monospace; letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .no-posts {
+      text-align: center; padding: 4rem 0;
+      color: var(--steel); font-size: 1rem;
+      grid-column: 1/-1;
+    }
+    .blog-main { padding: 60px 28px 100px; }
+  </style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">IYETU<span>.</span>BARILOGI</a>
+    <ul class="nav-links">
+      <li><a href="index.html#what-i-do">What I Do</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="blog.html" style="color:var(--amber)">Blog</a></li>
+      <li><a href="index.html#contact">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#what-i-do" onclick="toggleMenu()">What I Do</a>
+  <a href="index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="index.html#skills" onclick="toggleMenu()">Skills</a>
+  <a href="index.html#experience" onclick="toggleMenu()">Experience</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="index.html#contact" onclick="toggleMenu()">Hire Me</a>
+</div>
+
+<header class="blog-page-header">
+  <div class="container">
+    <div class="blog-eyebrow">Insights &amp; Field Notes</div>
+    <h1>The <span>Blog</span></h1>
+    <p>Practical writing on CMMS deployment, reliability engineering, maintenance planning, and building asset systems that work.</p>
+  </div>
+</header>
+
+<main class="container blog-main">
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-cat="all" onclick="filterPosts('all',this)">All</button>
+    <button class="filter-btn" data-cat="CMMS & Systems" onclick="filterPosts('CMMS & Systems',this)">CMMS</button>
+    <button class="filter-btn" data-cat="Reliability Engineering" onclick="filterPosts('Reliability Engineering',this)">Reliability</button>
+    <button class="filter-btn" data-cat="Maintenance Planning" onclick="filterPosts('Maintenance Planning',this)">Planning</button>
+    <button class="filter-btn" data-cat="Asset Management" onclick="filterPosts('Asset Management',this)">Assets</button>
+  </div>
+
+  <div id="posts-grid" class="all-posts-grid">
+    <div style="text-align:center;padding:3rem;color:var(--steel);grid-column:1/-1">
+      <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--amber)"></i>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">IYETU<span>.</span>BARILOGI</div>
+    <div class="footer-tag">Maintenance &amp; Reliability Engineer · CMMS Specialist · Asset Performance</div>
+    <div class="footer-year">© 2026 — All Rights Reserved</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.querySelector('.hamburger').classList.toggle('open');
+  }
+
+  let allPosts = [];
+
+  async function loadPosts() {
+    try {
+      const res = await fetch('posts.json');
+      if (!res.ok) throw new Error();
+      allPosts = await res.json();
+      renderPosts(allPosts);
+    } catch {
+      document.getElementById('posts-grid').innerHTML = '<p class="no-posts">No posts available yet. Check back soon.</p>';
+    }
+  }
+
+  function renderPosts(posts) {
+    const grid = document.getElementById('posts-grid');
+    if (!posts.length) {
+      grid.innerHTML = '<p class="no-posts">No posts in this category yet.</p>';
+      return;
+    }
+    grid.innerHTML = posts.map(p => {
+      const date = new Date(p.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      return `<a href="post.html?slug=${p.slug}" class="post-list-card">
+        <div class="post-list-card-img">
+          ${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" />` : `<div class="img-mono">IB</div>`}
+        </div>
+        <div class="post-list-body">
+          <span class="blog-cat-tag">${p.category}</span>
+          <h3>${p.title}</h3>
+          <p class="post-list-exc">${p.excerpt}</p>
+          <div class="post-list-foot">
+            <span class="post-list-meta"><i class="far fa-calendar" style="margin-right:4px"></i>${date} &nbsp;·&nbsp; ${p.readTime}</span>
+            <span class="read-link">Read <i class="fas fa-arrow-right" style="font-size:9px"></i></span>
+          </div>
+        </div>
+      </a>`;
+    }).join('');
+  }
+
+  function filterPosts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (cat === 'all') { renderPosts(allPosts); return; }
+    renderPosts(allPosts.filter(p => p.category === cat));
+  }
+
+  loadPosts();
+</script>
+</body>
+</html>

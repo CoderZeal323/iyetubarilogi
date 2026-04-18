@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post — BARILOGI IYETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .post-hero {
+      padding: 120px 0 50px;
+      background: var(--navy-mid);
+      border-bottom: 1px solid rgba(245,166,35,0.15);
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--amber); font-weight: 600;
+      margin-bottom: 24px; text-decoration: none;
+      transition: var(--transition);
+    }
+    .back-link:hover { opacity: 0.7; }
+    .post-cat-badge {
+      display: inline-block;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--amber); border: 1px solid rgba(245,166,35,0.35);
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 14px;
+    }
+    .post-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800; line-height: 1.1;
+      color: var(--pure); margin-bottom: 18px;
+      max-width: 780px; text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .post-meta-row {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--steel); font-size: 11px; margin-bottom: 8px;
+    }
+    .post-meta-row strong { color: var(--smoke); }
+
+    /* Like button */
+    .like-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.25);
+      border-radius: 2px; padding: 9px 20px;
+      cursor: pointer;
+      font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: 500;
+      color: var(--smoke); transition: var(--transition);
+      letter-spacing: 0.5px;
+    }
+    .like-btn:hover { border-color: var(--amber); background: rgba(245,166,35,0.15); }
+    .like-btn.liked { background: var(--amber); color: var(--navy); border-color: var(--amber); }
+    .like-btn i { font-size: 14px; }
+
+    /* Post layout */
+    .post-layout {
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      gap: 48px;
+      margin-top: 60px;
+    }
+    @media (max-width: 900px) {
+      .post-layout { grid-template-columns: 1fr; }
+      .post-sidebar { display: none; }
+    }
+    .post-cover {
+      width: 100%; max-height: 400px;
+      object-fit: cover; border-radius: var(--card-radius);
+      margin-bottom: 36px;
+      border: 1px solid rgba(245,166,35,0.1);
+    }
+    .post-body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem; line-height: 1.85;
+      color: var(--smoke); font-weight: 300;
+    }
+    .post-body h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.75rem; font-weight: 700;
+      color: var(--pure); margin: 2.5rem 0 1rem;
+      text-transform: uppercase; letter-spacing: 0.02em;
+    }
+    .post-body h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--pure); margin: 2rem 0 0.75rem;
+      text-transform: uppercase;
+    }
+    .post-body p { margin-bottom: 1.4rem; }
+    .post-body strong { font-weight: 600; color: var(--white); }
+    .post-body ul, .post-body ol { margin: 0 0 1.4rem 1.5rem; }
+    .post-body li { margin-bottom: 0.6rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--amber);
+      padding: 14px 20px; margin: 1.5rem 0;
+      background: rgba(245,166,35,0.06);
+      border-radius: 0 4px 4px 0;
+      font-style: italic; color: var(--smoke);
+    }
+    .post-body a { color: var(--amber); text-decoration: underline; }
+
+    /* Stars */
+    .star-row { display: flex; gap: 5px; margin: 12px 0; }
+    .star { font-size: 22px; color: var(--steel); cursor: pointer; transition: color 0.15s; line-height: 1; }
+    .star.active, .star.hover { color: var(--amber); }
+
+    /* Sidebar */
+    .post-sidebar { position: sticky; top: 90px; }
+    .sidebar-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(245,166,35,0.12);
+      border-radius: var(--card-radius);
+      padding: 22px; margin-bottom: 20px;
+    }
+    .sidebar-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--pure); margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .sidebar-card p {
+      font-size: 12px; color: var(--steel-light);
+      line-height: 1.75; font-weight: 300;
+    }
+
+    /* Rating form */
+    .rating-form textarea {
+      width: 100%; box-sizing: border-box;
+      padding: 10px; border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 2px;
+      font-family: 'Barlow', sans-serif; font-size: 12px;
+      color: var(--smoke); background: var(--navy);
+      resize: vertical; min-height: 70px; margin-top: 8px;
+    }
+    .rating-form input {
+      width: 100%; box-sizing: border-box;
+      padding: 9px 12px; border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 2px;
+      font-family: 'Barlow', sans-serif; font-size: 12px;
+      color: var(--smoke); background: var(--navy); margin-top: 6px;
+    }
+    .rating-form textarea:focus, .rating-form input:focus {
+      outline: none; border-color: var(--amber);
+    }
+    .avg-rating {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--amber); margin-bottom: 2px;
+    }
+    .avg-small { font-size: 10px; color: var(--steel); font-family: 'Roboto Mono', monospace; }
+
+    /* Inline rating card */
+    .inline-rating-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(245,166,35,0.12);
+      border-radius: var(--card-radius);
+      padding: 22px; margin-top: 40px;
+    }
+    .inline-rating-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--pure); margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+
+    /* Comments */
+    .comments-section {
+      margin-top: 60px; padding-top: 40px;
+      border-top: 1px solid rgba(245,166,35,0.1);
+    }
+    .comments-section h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--pure); margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    /* Submit btn variant */
+    .btn-amber-full {
+      width: 100%; justify-content: center;
+      background: var(--amber); color: var(--navy);
+      border: none; border-radius: 2px;
+      padding: 10px 18px; margin-top: 10px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-amber-full:hover { background: var(--amber-deep); }
+    .success-note {
+      display: none; font-family: 'Roboto Mono', monospace;
+      font-size: 10px; color: var(--amber); margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">IYETU<span>.</span>BARILOGI</a>
+    <ul class="nav-links">
+      <li><a href="index.html#what-i-do">What I Do</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="blog.html" style="color:var(--amber)">Blog</a></li>
+      <li><a href="index.html#contact">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#what-i-do" onclick="toggleMenu()">What I Do</a>
+  <a href="index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<div id="post-hero" class="post-hero">
+  <div class="container">
+    <a href="blog.html" class="back-link">
+      <i class="fas fa-arrow-left" style="font-size:9px"></i> All Posts
+    </a>
+    <div id="post-cat-badge" class="post-cat-badge">Loading...</div>
+    <h1 id="post-title" class="post-title">Loading...</h1>
+    <div class="post-meta-row">
+      <span id="post-date"><i class="far fa-calendar"></i> ...</span>
+      <span id="post-read-time"><i class="far fa-clock"></i> ...</span>
+      <span>By <strong>Barilogi Iyetu</strong></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:20px">
+      <button id="like-btn" class="like-btn" onclick="handleLike()">
+        <i class="far fa-heart"></i>
+        <span id="like-count">0</span> Likes
+      </button>
+      <span id="avg-display" style="font-family:'Roboto Mono',monospace;font-size:11px;color:var(--steel)">Loading ratings...</span>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-bottom:100px">
+  <div class="post-layout">
+    <article>
+      <img id="post-cover" class="post-cover" src="" alt="" style="display:none" />
+      <div id="post-body" class="post-body"></div>
+
+      <!-- Inline rating card -->
+      <div class="inline-rating-card">
+        <h4><i class="fas fa-star" style="color:var(--amber);margin-right:6px"></i>Rate this post</h4>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px">
+          <div>
+            <div id="avg-big" class="avg-rating">-</div>
+            <div class="avg-small" id="avg-label">No ratings yet</div>
+          </div>
+          <div>
+            <p style="font-size:11px;color:var(--steel);margin-bottom:6px;font-family:'Roboto Mono',monospace;letter-spacing:0.5px">YOUR RATING:</p>
+            <div class="star-row" id="star-row-inline">
+              <span class="star" data-v="1" onclick="setRating(1,'inline')">★</span>
+              <span class="star" data-v="2" onclick="setRating(2,'inline')">★</span>
+              <span class="star" data-v="3" onclick="setRating(3,'inline')">★</span>
+              <span class="star" data-v="4" onclick="setRating(4,'inline')">★</span>
+              <span class="star" data-v="5" onclick="setRating(5,'inline')">★</span>
+            </div>
+          </div>
+        </div>
+        <div class="rating-form">
+          <input type="text" id="rate-name-inline" placeholder="Your name (optional)" />
+          <textarea id="rate-review-inline" placeholder="Leave a short review (optional)"></textarea>
+          <button class="btn-amber-full" onclick="submitRating('inline')">
+            <i class="fas fa-star"></i> Submit Rating
+          </button>
+          <p id="rate-ok-inline" class="success-note"><i class="fas fa-check-circle"></i> Thank you for rating!</p>
+        </div>
+      </div>
+
+      <div class="comments-section">
+        <h3>Comments</h3>
+        <div id="giscus-container">
+          <!-- To enable comments, go to https://giscus.app, connect your GitHub repo,
+               and replace this comment with the generated <script> tag. -->
+          <div style="padding:2rem;background:var(--navy-mid);border-radius:4px;text-align:center;border:1px dashed rgba(245,166,35,0.2)">
+            <p style="color:var(--steel);font-size:13px;font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:1px">
+              <i class="fas fa-comments" style="color:var(--amber);margin-right:6px"></i>
+              COMMENTS — CONFIGURE GISCUS IN POST.HTML TO ENABLE
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="post-sidebar">
+      <div class="sidebar-card">
+        <h4>About the Author</h4>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:50px;height:50px;border-radius:2px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--amber);font-size:1.1rem;flex-shrink:0">IB</div>
+          <div>
+            <strong style="color:var(--pure);font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;display:block;text-transform:uppercase;letter-spacing:0.04em">Barilogi Iyetu</strong>
+            <span style="font-size:10px;color:var(--steel);font-family:'Roboto Mono',monospace">Maintenance &amp; Reliability Engineer</span>
+          </div>
+        </div>
+        <p style="margin-bottom:12px">CMMS specialist with 4+ years in industrial maintenance, asset performance optimization, and reliability-centered maintenance strategy.</p>
+        <a href="index.html#contact" class="btn btn-primary" style="font-size:10px;padding:9px 18px;width:100%;justify-content:center;display:flex;text-decoration:none;border-radius:2px">
+          <i class="fas fa-envelope"></i> Get In Touch
+        </a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4><i class="fas fa-star" style="color:var(--amber);margin-right:6px"></i>Rate this Post</h4>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div>
+            <div id="avg-big-side" class="avg-rating">-</div>
+            <div id="avg-label-side" class="avg-small">No ratings yet</div>
+          </div>
+          <div>
+            <p style="font-size:10px;color:var(--steel);margin-bottom:6px;font-family:'Roboto Mono',monospace;letter-spacing:0.5px">YOUR RATING:</p>
+            <div class="star-row" id="star-row-side">
+              <span class="star" data-v="1" onclick="setRating(1,'side')">★</span>
+              <span class="star" data-v="2" onclick="setRating(2,'side')">★</span>
+              <span class="star" data-v="3" onclick="setRating(3,'side')">★</span>
+              <span class="star" data-v="4" onclick="setRating(4,'side')">★</span>
+              <span class="star" data-v="5" onclick="setRating(5,'side')">★</span>
+            </div>
+          </div>
+        </div>
+        <div class="rating-form">
+          <input type="text" id="rate-name-side" placeholder="Your name (optional)" />
+          <textarea id="rate-review-side" placeholder="Leave a short review..." style="min-height:55px"></textarea>
+          <button class="btn-amber-full" onclick="submitRating('side')" style="font-size:10px;padding:8px 14px">
+            <i class="fas fa-star"></i> Submit
+          </button>
+          <p id="rate-ok-side" class="success-note"><i class="fas fa-check-circle"></i> Thank you!</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4><i class="fas fa-th-list" style="color:var(--amber);margin-right:6px"></i>More Posts</h4>
+        <a href="blog.html" style="color:var(--amber);font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:6px">
+          View All Posts <i class="fas fa-arrow-right" style="font-size:9px"></i>
+        </a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">IYETU<span>.</span>BARILOGI</div>
+    <div class="footer-tag">Maintenance &amp; Reliability Engineer · CMMS Specialist · Asset Performance</div>
+    <div class="footer-year">© 2026 — All Rights Reserved</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.querySelector('.hamburger').classList.toggle('open');
+  }
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  let currentRating = 0;
+  let currentRatingSide = 0;
+  let localLiked = false;
+  let localLikeCount = 0;
+
+  if (!slug) {
+    document.getElementById('post-body').innerHTML = '<p style="color:var(--steel)">Post not found. <a href="blog.html" style="color:var(--amber)">Go back to the blog.</a></p>';
+  } else {
+    fetch('posts.json')
+      .then(r => r.json())
+      .then(posts => {
+        const post = posts.find(p => p.slug === slug);
+        if (!post) {
+          document.getElementById('post-body').innerHTML = '<p>Post not found. <a href="blog.html" style="color:var(--amber)">Back to blog.</a></p>';
+          return;
+        }
+        document.title = post.title + ' — BARILOGI IYETU';
+        document.getElementById('post-cat-badge').textContent = post.category;
+        document.getElementById('post-title').textContent = post.title;
+        document.getElementById('post-date').innerHTML = `<i class="far fa-calendar"></i> ${new Date(post.date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
+        document.getElementById('post-read-time').innerHTML = `<i class="far fa-clock"></i> ${post.readTime}`;
+        if (post.coverImage) {
+          const img = document.getElementById('post-cover');
+          img.src = post.coverImage; img.alt = post.title;
+          img.style.display = 'block';
+        }
+        document.getElementById('post-body').innerHTML = marked.parse(post.content);
+
+        // Load persisted likes/ratings from localStorage (no Supabase required)
+        loadLocalLikes(slug);
+        loadLocalRatings(slug);
+      })
+      .catch(() => {
+        document.getElementById('post-body').innerHTML = '<p>Error loading post.</p>';
+      });
+  }
+
+  function loadLocalLikes(slug) {
+    const liked = localStorage.getItem('liked_' + slug) === 'true';
+    const count = parseInt(localStorage.getItem('likecount_' + slug) || '0');
+    localLiked = liked; localLikeCount = count;
+    document.getElementById('like-count').textContent = count;
+    const btn = document.getElementById('like-btn');
+    if (liked) { btn.classList.add('liked'); btn.querySelector('i').className = 'fas fa-heart'; }
+    updateAvgDisplay(null, null);
+  }
+
+  function loadLocalRatings(slug) {
+    const saved = JSON.parse(localStorage.getItem('ratings_' + slug) || '[]');
+    if (saved.length) {
+      const avg = (saved.reduce((s,r) => s+r, 0) / saved.length).toFixed(1);
+      updateAvgDisplay(avg, saved.length);
+    }
+  }
+
+  function updateAvgDisplay(avg, count) {
+    const label = count > 0 ? `${avg} / 5  (${count} rating${count > 1 ? 's' : ''})` : 'No ratings yet';
+    ['', '-side'].forEach(sfx => {
+      const big = document.getElementById(`avg-big${sfx}`);
+      const lbl = document.getElementById(`avg-label${sfx}`);
+      if (big) big.textContent = count > 0 ? avg : '-';
+      if (lbl) lbl.textContent = label;
+    });
+    const disp = document.getElementById('avg-display');
+    if (disp) disp.textContent = count > 0 ? `★ ${avg}/5 (${count} ratings)` : 'No ratings yet';
+  }
+
+  window.handleLike = function() {
+    if (!slug) return;
+    localLiked = !localLiked;
+    localLikeCount = localLiked ? localLikeCount + 1 : Math.max(0, localLikeCount - 1);
+    localStorage.setItem('liked_' + slug, localLiked);
+    localStorage.setItem('likecount_' + slug, localLikeCount);
+    document.getElementById('like-count').textContent = localLikeCount;
+    const btn = document.getElementById('like-btn');
+    btn.classList.toggle('liked', localLiked);
+    btn.querySelector('i').className = localLiked ? 'fas fa-heart' : 'far fa-heart';
+  };
+
+  function highlightStars(ctx, value) {
+    const row = document.getElementById(`star-row-${ctx}`);
+    if (!row) return;
+    row.querySelectorAll('.star').forEach(s => {
+      s.classList.toggle('active', parseInt(s.dataset.v) <= value);
+    });
+  }
+
+  window.setRating = function(value, ctx) {
+    if (ctx === 'inline') currentRating = value;
+    else currentRatingSide = value;
+    highlightStars(ctx, value);
+  };
+
+  window.submitRating = function(ctx) {
+    const rating = ctx === 'inline' ? currentRating : currentRatingSide;
+    if (!rating) { alert('Please select a star rating first.'); return; }
+    if (!slug) return;
+    const saved = JSON.parse(localStorage.getItem('ratings_' + slug) || '[]');
+    saved.push(rating);
+    localStorage.setItem('ratings_' + slug, JSON.stringify(saved));
+    const avg = (saved.reduce((s,r) => s+r, 0) / saved.length).toFixed(1);
+    updateAvgDisplay(avg, saved.length);
+    highlightStars('inline', rating);
+    highlightStars('side', rating);
+    const ok = document.getElementById(`rate-ok-${ctx}`);
+    if (ok) ok.style.display = 'block';
+  };
+
+  // Star hover effects
+  ['inline','side'].forEach(ctx => {
+    const row = document.getElementById(`star-row-${ctx}`);
+    if (!row) return;
+    row.querySelectorAll('.star').forEach(star => {
+      star.addEventListener('mouseenter', () => {
+        const v = parseInt(star.dataset.v);
+        row.querySelectorAll('.star').forEach(s => s.classList.toggle('hover', parseInt(s.dataset.v) <= v));
+      });
+      star.addEventListener('mouseleave', () => {
+        row.querySelectorAll('.star').forEach(s => s.classList.remove('hover'));
+      });
+    });
+  });
+</script>
+</body>
+</html>

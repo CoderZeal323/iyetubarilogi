@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal — BARILOGI IYETU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav id="mainNav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">IYETU<span>.</span>BARILOGI</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="admin">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Admin Portal</div>
+        <h2 class="section-title">Blog <span>Management</span></h2>
+      </div>
+
+      <div id="authSection" class="auth-section">
+        <h3>Admin Login</h3>
+        <form id="loginForm">
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-field">
+            <label>Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div id="authMessage"></div>
+      </div>
+
+      <div id="adminPanel" class="admin-panel" style="display:none;">
+        <div class="admin-tabs">
+          <button class="tab-btn active" data-tab="posts">Manage Posts</button>
+          <button class="tab-btn" data-tab="comments">Comments</button>
+        </div>
+
+        <div id="postsTab" class="tab-content">
+          <div class="admin-actions">
+            <button id="newPostBtn" class="btn btn-primary">New Post</button>
+          </div>
+
+          <div id="postsList" class="posts-list">
+            <!-- Posts will be loaded here -->
+          </div>
+        </div>
+
+        <div id="commentsTab" class="tab-content" style="display:none;">
+          <div id="commentsList" class="comments-list">
+            <!-- Comments will be loaded here -->
+          </div>
+        </div>
+
+        <!-- New/Edit Post Modal -->
+        <div id="postModal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 id="modalTitle">New Post</h3>
+            <form id="postForm">
+              <div class="form-field">
+                <label>Title</label>
+                <input type="text" id="postTitle" required>
+              </div>
+              <div class="form-field">
+                <label>Slug</label>
+                <input type="text" id="postSlug" required>
+              </div>
+              <div class="form-field">
+                <label>Excerpt</label>
+                <textarea id="postExcerpt" rows="3"></textarea>
+              </div>
+              <div class="form-field">
+                <label>Content (Markdown)</label>
+                <textarea id="postContent" rows="10" required></textarea>
+              </div>
+              <div class="form-field">
+                <label>Tags (comma-separated)</label>
+                <input type="text" id="postTags">
+              </div>
+              <div class="form-field">
+                <label>Status</label>
+                <select id="postStatus">
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="auth.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>

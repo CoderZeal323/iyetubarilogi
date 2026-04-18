@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BARILOGI IYETU — Maintenance & Reliability Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">IYETU<span>.</span>BARILOGI</a>
+    <ul class="nav-links">
+      <li><a href="#what-i-do">What I Do</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#contact">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#what-i-do" onclick="toggleMenu()">What I Do</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#dashboard" onclick="toggleMenu()">Dashboard</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="blog.html" onclick="toggleMenu()">Blog</a>
+  <a href="#contact" onclick="toggleMenu()">Hire Me</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-tag reveal">Maintenance &amp; Reliability Engineering</div>
+        <h1 class="hero-name reveal reveal-delay-1">IYETU<br><em>BARILOGI</em></h1>
+        <p class="hero-headline reveal reveal-delay-2">
+          Maintenance &amp; Reliability Engineer &nbsp;|&nbsp; CMMS/SAP PM Consultant &nbsp;|&nbsp; Asset Performance Optimization
+        </p>
+        <p class="hero-sub reveal reveal-delay-3">
+          I build maintenance systems that reduce unplanned downtime, improve planning accuracy, and give operations teams full visibility of their assets.
+
+My work consistently moves plants from reactive firefighting to structured, data-driven reliability.
+        </p>
+        <div class="hero-ctas reveal reveal-delay-4">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Hire Me</a>
+        </div>
+        <div class="hero-stats reveal reveal-delay-4">
+          <div>
+            <div class="hero-stat-num">4+</div>
+            <div class="hero-stat-label">Years in Industrial Maintenance</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">3</div>
+            <div class="hero-stat-label">Full CMMS Deployments</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">40%</div>
+            <div class="hero-stat-label">Avg. Reactive Work Reduction</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+       <img src="images/iyetu.jpeg" alt="iyetu"
+       style="width:100%;height:100%;object-fit:center;object-position:top center;margin: auto; border-radius: 3.5%;"/>
+        <div class="photo-badge-a"><span class="big">CMMS/SAP PM</span>Consultant</div>
+        <div class="photo-badge-b"><span>O&amp;G</span>Specialist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT I DO ===================== -->
+<section id="what-i-do">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">What <span>I Do</span></h2>
+    </div>
+    <div class="wid-grid">
+      <div class="wid-item reveal">
+        <div class="wid-num">01</div>
+        <div class="wid-title">CMMS Deployment &amp; Structuring</div>
+        <p class="wid-body">Design and implement end-to-end CMMS systems, from asset hierarchy/register and equipment coding to PM schedules, Task list creation, work order workflows, and KPI reporting. I build systems that operations teams actually use and trust.</p>
+      </div>
+      <div class="wid-item reveal reveal-delay-1">
+        <div class="wid-num">02</div>
+        <div class="wid-title">Maintenance Visibility &amp; Planning</div>
+        <p class="wid-body">Turn scattered maintenance data into structured planning. I establish backlog management processes, scheduling logic, and reporting dashboards that give supervisors and leadership clear, real-time operational control.</p>
+      </div>
+      <div class="wid-item reveal">
+        <div class="wid-num">03</div>
+        <div class="wid-title">Reliability Engineering</div>
+        <p class="wid-body">Apply reliability-centered principles, RCA, FMEA, failure trending - to shift maintenance from firefighting to prevention. I identify the highest-impact interventions and build the case for systemic, lasting change.</p>
+      </div>
+      <div class="wid-item reveal reveal-delay-1">
+        <div class="wid-num">04</div>
+        <div class="wid-title">Asset Performance Optimization</div>
+        <p class="wid-body">Align maintenance strategy with asset criticality. I build maintenance plans proportional to risk, cost-effective, and designed to extend asset life, turning maintenance from a cost centre into a production enabler.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METRICS ===================== -->
+<section id="metrics">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-item reveal">
+        <span class="metric-val" data-target="40" data-suffix="% ↓">40% ↓</span>
+        <span class="metric-label">Reactive Maintenance Reduction</span>
+        <span class="metric-sub">Average across deployments</span>
+      </div>
+      <div class="metric-item reveal reveal-delay-1">
+        <span class="metric-val" data-target="85" data-suffix="% ↑">85% ↑</span>
+        <span class="metric-label">Work Order Visibility</span>
+        <span class="metric-sub">From ad-hoc to fully tracked</span>
+      </div>
+      <div class="metric-item reveal reveal-delay-2">
+        <span class="metric-val" data-target="92" data-suffix="% ↑">92% ↑</span>
+        <span class="metric-label">PM Schedule Compliance</span>
+        <span class="metric-sub">Post-CMMS implementation</span>
+      </div>
+      <div class="metric-item reveal reveal-delay-3">
+        <span class="metric-val" data-target="3" data-suffix="×">3×</span>
+        <span class="metric-label">Planning Accuracy Improvement</span>
+        <span class="metric-sub">Resources, parts &amp; time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">Selected <span>Projects</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <!-- P1 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-tag">Flagship · CMMS Implementation</div>
+            <h3 class="project-title">End-to-End CMMS Deployment — Industrial Plant</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="pab-label">Problem</div>
+            <p class="pab-text">A 3000+ asset industrial facility had no structured maintenance system. Work orders were logged on paper, equipment history was non-existent, and 85% of maintenance was reactive. Planners had no visibility into backlog or resource demand.</p>
+          </div>
+          <div>
+            <div class="pab-label">Action</div>
+            <p class="pab-text">Led full CMMS implementation: developed asset hierarchy (location → system → equipment), created equipment numbering conventions with smart tagging, built 500+ PM tasks with OEM-aligned intervals, and configured work order workflow from creation to close-out.</p>
+          </div>
+          <div>
+            <div class="pab-label">Result</div>
+            <p class="pab-text">PM compliance reached 80% within 6 months. Reactive maintenance dropped from 85% to under 35%, reducing unplanned downtime exposure and improving production stability. Maintenance backlog became measurable. Team shifted from daily firefighting to weekly structured planning cycles.</p>
+          </div>
+          <div class="before-after">
+            <div>
+              <div class="ba-label before">⚠ Before</div>
+              <div class="ba-item"><span>✗</span> Paper-based work requests</div>
+              <div class="ba-item"><span>✗</span> No equipment history or records</div>
+              <div class="ba-item"><span>✗</span> 85% reactive maintenance ratio</div>
+              <div class="ba-item"><span>✗</span> Zero PM scheduling discipline</div>
+            </div>
+            <div>
+              <div class="ba-label after">✓ After</div>
+              <div class="ba-item"><span>✓</span> Digital work order system live</div>
+              <div class="ba-item"><span>✓</span> Full asset register with history</div>
+              <div class="ba-item"><span>✓</span> Reactive maintenance below 35%</div>
+              <div class="ba-item"><span>✓</span> Weekly PM schedule &amp; compliance tracking</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-results">
+          <div class="result-chip">88% PM compliance in 6 months</div>
+          <div class="result-chip">500+ PM tasks configured</div>
+          <div class="result-chip">Full asset hierarchy for 3000+ assets</div>
+          <div class="result-chip">Reactive work halved</div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-tag">Maintenance Optimization</div>
+            <h3 class="project-title">Backlog Reduction &amp; Scheduling Overhaul</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="pab-label">Problem</div>
+            <p class="pab-text">Maintenance backlog had grown to 6+ weeks of uncompleted work orders. No prioritisation logic existed. All requests were treated equally, regardless of safety or production impact. Technicians were pulled from planned work to attend emergencies daily.</p>
+          </div>
+          <div>
+            <div class="pab-label">Action</div>
+            <p class="pab-text">Introduced a work order prioritisation matrix (Safety → Production Impact → Regulatory → Routine). Restructured weekly planning meetings using CMMS backlog reports. Implemented a 4-week rolling schedule separating planned from reactive responses.</p>
+          </div>
+          <div>
+            <div class="pab-label">Result</div>
+            <p class="pab-text">Backlog reduced from 6 weeks to under 2 weeks within one quarter. Unplanned work interruptions decreased by 50%. More than 60% of work was scheduled rather than demanded. Supervisor confidence in weekly planning improved measurably.</p>
+          </div>
+        </div>
+        <div class="project-results">
+          <div class="result-chip">Backlog cut from 6 wks to under 2</div>
+          <div class="result-chip">60%+ work now scheduled</div>
+          <div class="result-chip">50% fewer unplanned interruptions</div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-tag">Reliability Improvement</div>
+            <h3 class="project-title">Recurring Failure Analysis &amp; Corrective Action Programme</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="pab-label">Problem</div>
+            <p class="pab-text">Three critical pump systems were failing every 4–6 weeks, each failure causing 8–14 hours of production downtime. The root cause was treated each time as an isolated event. No failure data was being retained or analysed systematically.</p>
+          </div>
+          <div>
+            <div class="pab-label">Action</div>
+            <p class="pab-text">Extracted work order history from CMMS and built failure frequency analysis. Conducted structured RCA sessions for the three worst-performing assets. Identified lubrication intervals and alignment tolerances as core contributors. Revised PM tasks and introduced condition monitoring checkpoints.</p>
+          </div>
+          <div>
+            <div class="pab-label">Result</div>
+            <p class="pab-text">Mean time between failures increased from 5 weeks to over 22 weeks. Annualised downtime on those assets reduced by ~120 hours. The structured failure tracking process was subsequently adopted for the top 15 critical assets facility-wide.</p>
+          </div>
+        </div>
+        <div class="project-results">
+          <div class="result-chip">MTBF: 5 weeks → 22+ weeks</div>
+          <div class="result-chip">~120 hrs downtime saved annually</div>
+          <div class="result-chip">RCA framework adopted facility-wide</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DASHBOARD ===================== -->
+<section id="dashboard">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Live View</div>
+      <h2 class="section-title">Maintenance Performance <span>Dashboard</span></h2>
+<p class="pab-text">This is a typical maintenance dashboard I build for operations teams using CMMS data. It provides real-time visibility into work orders, compliance, backlog, and asset performance.</p>
+    </div>
+    <div style="margin-top:50px" class="reveal">
+      <div class="dash-topbar">
+        <span class="dash-title-bar">CMMS — Operations Maintenance Overview &nbsp;|&nbsp; Plant A — Q4 2024</span>
+        <span class="dash-live">LIVE DATA</span>
+      </div>
+      <div class="dash-body">
+
+        <!-- KPIs -->
+        <div class="dash-kpis">
+          <div class="kpi-card amber">
+            <div class="kpi-label">Open Work Orders</div>
+            <div class="kpi-val">47</div>
+            <div class="kpi-trend trend-dn">↓ 12 from last week</div>
+          </div>
+          <div class="kpi-card green">
+            <div class="kpi-label">PM Compliance (MTD)</div>
+            <div class="kpi-val">92%</div>
+            <div class="kpi-trend trend-up">↑ 3% vs target</div>
+          </div>
+          <div class="kpi-card blue">
+            <div class="kpi-label">Planned Work Ratio</div>
+            <div class="kpi-val">68%</div>
+            <div class="kpi-trend trend-up">↑ from 42% baseline</div>
+          </div>
+          <div class="kpi-card red">
+            <div class="kpi-label">Critical Overdue WOs</div>
+            <div class="kpi-val">6</div>
+            <div class="kpi-trend trend-dn">↓ 4 from prior week</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="dash-charts">
+          <!-- Bar -->
+          <div class="dash-chart-card">
+            <div class="dcc-title">PM vs CM Work Orders — 6-Month Trend</div>
+            <div class="chart-legend">
+              <span><span class="legend-swatch" style="background:var(--amber)"></span>Preventive</span>
+              <span><span class="legend-swatch" style="background:rgba(231,76,60,0.75)"></span>Corrective</span>
+            </div>
+            <div class="bar-chart">
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:40px"></div><div class="bar cm" style="height:64px"></div></div><span class="bar-label">Jul</span></div>
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:46px"></div><div class="bar cm" style="height:56px"></div></div><span class="bar-label">Aug</span></div>
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:54px"></div><div class="bar cm" style="height:48px"></div></div><span class="bar-label">Sep</span></div>
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:62px"></div><div class="bar cm" style="height:38px"></div></div><span class="bar-label">Oct</span></div>
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:70px"></div><div class="bar cm" style="height:30px"></div></div><span class="bar-label">Nov</span></div>
+              <div class="bar-group"><div class="bar-pair"><div class="bar pm" style="height:78px"></div><div class="bar cm" style="height:22px"></div></div><span class="bar-label">Dec</span></div>
+            </div>
+          </div>
+          <!-- Donut -->
+          <div class="dash-chart-card">
+            <div class="dcc-title">Work Order Status Distribution</div>
+            <div class="donut-wrap">
+              <svg width="100" height="100" viewBox="0 0 100 100" style="flex-shrink:0">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#0a1826" stroke-width="18"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#27ae60" stroke-width="18" stroke-dasharray="107 238" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#f5a623" stroke-width="18" stroke-dasharray="67 238" stroke-dashoffset="-107" transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#3b82f6" stroke-width="18" stroke-dasharray="40 238" stroke-dashoffset="-174" transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#e74c3c" stroke-width="18" stroke-dasharray="24 238" stroke-dashoffset="-214" transform="rotate(-90 50 50)"/>
+                <text x="50" y="46" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="14" fill="#f0f4f8" font-weight="700">168</text>
+                <text x="50" y="58" text-anchor="middle" font-family="Roboto Mono,monospace" font-size="6" fill="#6b88a8">TOTAL WOs</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="legend-row"><span class="legend-dot" style="background:#27ae60"></span>Completed<span class="legend-pct">45%</span></div>
+                <div class="legend-row"><span class="legend-dot" style="background:#f5a623"></span>In Progress<span class="legend-pct">28%</span></div>
+                <div class="legend-row"><span class="legend-dot" style="background:#3b82f6"></span>Scheduled<span class="legend-pct">17%</span></div>
+                <div class="legend-row"><span class="legend-dot" style="background:#e74c3c"></span>Overdue<span class="legend-pct">10%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Failures Table -->
+        <div class="dash-chart-card" style="margin-bottom:20px">
+          <div class="dcc-title">Top Recurring Failures — Last 90 Days</div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Equipment</th>
+                <th>Failure Mode</th>
+                <th>Occurrences</th>
+                <th>Total Downtime</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="sev h"></span>Feed Pump P-101</td><td>Mechanical Seal Failure</td><td>4</td><td>32 hrs</td><td style="color:var(--warn)">RCA In Progress</td></tr>
+              <tr><td><span class="sev h"></span>Compressor K-201</td><td>Bearing Overheating</td><td>3</td><td>24 hrs</td><td style="color:var(--amber)">PM Revised</td></tr>
+              <tr><td><span class="sev m"></span>Conveyor CV-05</td><td>Belt Misalignment</td><td>6</td><td>18 hrs</td><td style="color:var(--success)">Resolved</td></tr>
+              <tr><td><span class="sev m"></span>Heat Exchanger E-301</td><td>Fouling / Tube Blockage</td><td>2</td><td>16 hrs</td><td style="color:var(--amber)">Monitoring</td></tr>
+              <tr><td><span class="sev l"></span>Cooling Tower CT-01</td><td>Fill Media Degradation</td><td>1</td><td>8 hrs</td><td style="color:var(--success)">Parts Ordered</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Downtime trend -->
+        <div class="dash-chart-card">
+          <div class="dcc-title">Equipment Downtime (Hours) — Monthly Trend &nbsp;↓ Steady Decline</div>
+          <div class="trend-row">
+            <div class="t-bar" style="height:92%"></div>
+            <div class="t-bar" style="height:82%"></div>
+            <div class="t-bar" style="height:74%"></div>
+            <div class="t-bar" style="height:63%"></div>
+            <div class="t-bar" style="height:52%"></div>
+            <div class="t-bar" style="height:38%;opacity:0.95"></div>
+          </div>
+          <div class="trend-months">
+            <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">Skills &amp; <span>Tools</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat reveal">
+        <span class="skill-cat-icon">⚙</span>
+        <div class="skill-cat-title">Maintenance &amp; Reliability</div>
+        <ul class="skill-list">
+          <li>Preventive Maintenance Design<div class="sbar-wrap"><div class="sbar" style="width:95%"></div></div></li>
+          <li>Reliability Engineering (RCM)<div class="sbar-wrap"><div class="sbar" style="width:88%"></div></div></li>
+          <li>Root Cause Analysis (RCA)<div class="sbar-wrap"><div class="sbar" style="width:90%"></div></div></li>
+          <li>Failure Mode Analysis (FMEA)<div class="sbar-wrap"><div class="sbar" style="width:82%"></div></div></li>
+          <li>Backlog &amp; Schedule Management<div class="sbar-wrap"><div class="sbar" style="width:93%"></div></div></li>
+          <li>Shutdown &amp; Turnaround Planning<div class="sbar-wrap"><div class="sbar" style="width:78%"></div></div></li>
+        </ul>
+      </div>
+      <div class="skill-cat reveal reveal-delay-1">
+        <span class="skill-cat-icon">🖥</span>
+        <div class="skill-cat-title">CMMS &amp; Systems</div>
+        <ul class="skill-list">
+          <li>CMMS Deployment (End-to-End)<div class="sbar-wrap"><div class="sbar" style="width:96%"></div></div></li>
+          <li>Asset Hierarchy Structuring<div class="sbar-wrap"><div class="sbar" style="width:95%"></div></div></li>
+          <li>Work Order System Configuration<div class="sbar-wrap"><div class="sbar" style="width:90%"></div></div></li>
+          <li>SAP PM / Limble CMMS / ManWinWin<div class="sbar-wrap"><div class="sbar" style="width:80%"></div></div></li>
+          <li>KPI Dashboard Design<div class="sbar-wrap"><div class="sbar" style="width:85%"></div></div></li>
+          <li>Spare Parts &amp; Inventory Setup<div class="sbar-wrap"><div class="sbar" style="width:75%"></div></div></li>
+        </ul>
+      </div>
+      <div class="skill-cat reveal reveal-delay-2">
+        <span class="skill-cat-icon">📊</span>
+        <div class="skill-cat-title">Technical Tools</div>
+        <ul class="skill-list">
+          <li>Microsoft Excel (Advanced)<div class="sbar-wrap"><div class="sbar" style="width:96%"></div></div></li>
+          <li>Data Analysis &amp; Reporting<div class="sbar-wrap"><div class="sbar" style="width:88%"></div></div></li>
+          <li>Power BI / Dashboard Tools<div class="sbar-wrap"><div class="sbar" style="width:72%"></div></div></li>
+          <li>P&ID Interpretation (Technical Drawings)<div class="sbar-wrap"><div class="sbar" style="width:75%"></div></div></li>
+          <li>MS Project (Basic)<div class="sbar-wrap"><div class="sbar" style="width:78%"></div></div></li>
+          <li>Technical Report Writing<div class="sbar-wrap"><div class="sbar" style="width:61%"></div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">Experience <span>Snapshot</span></h2>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-period">2023 — Present</div>
+        <div class="exp-role">Project Engineer — CMMS &amp; Asset Management</div>
+        <div class="exp-company">Industrial Engineering Services · Oil &amp; Gas / Manufacturing Sector</div>
+        <ul class="exp-bullets">
+          <li>Led full-lifecycle CMMS deployment for two multi-site industrial clients — asset register, PM plans, WO workflows, and reporting.</li>
+          <li>Developed equipment criticality assessments and aligned maintenance strategies to asset risk profiles.</li>
+          <li>Designed maintenance KPI frameworks adopted by operations leadership for monthly performance reporting.</li>
+          <li>Coached maintenance supervisors on CMMS utilisation, improving schedule compliance from 51% to 92%.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">CMMS</span>
+          <span class="exp-tag">Asset Management</span>
+          <span class="exp-tag">PM Planning</span>
+          <span class="exp-tag">Reliability</span>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period">2022 — 2023</div>
+        <div class="exp-role">Contract Maintenance/Asset Data Engineer</div>
+        <div class="exp-company">Oil and Gas · Maritime Industry</div>
+        <ul class="exp-bullets">
+          <li>Managed maintenance operations for rotating, static, and electrical equipment across a 200+ asset plant.</li>
+          <li>Introduced structured RCA methodology for top-10 recurring failures, reducing combined downtime by 35%.</li>
+          <li>Spearheaded transition from manual work request system to digital CMMS platform.</li>
+          <li>Coordinated planned shutdowns and turnarounds, managing scope, resources, and close-out documentation.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Rotating Equipment</span>
+          <span class="exp-tag">RCA</span>
+          <span class="exp-tag">Shutdown Planning</span>
+          <span class="exp-tag">Team Leadership</span>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period">2018 — 2018</div>
+        <div class="exp-role">Graduate / Junior Maintenance Engineer</div>
+        <div class="exp-company">Engineering Services Company · Multiple Industrial Sites</div>
+        <ul class="exp-bullets">
+          <li>Supported senior engineers in PM execution, inspection routines, and equipment commissioning activities.</li>
+          <li>Developed first working knowledge of CMMS platforms and maintenance data management practices.</li>
+          <li>Produced technical documentation, including maintenance procedures, equipment registers, and inspection reports.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Preventive Maintenance</span>
+          <span class="exp-tag">Technical Documentation</span>
+          <span class="exp-tag">Commissioning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSIGHTS ===================== -->
+<section id="insights">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Perspective</div>
+      <h2 class="section-title">Industry <span>Insights</span></h2>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-quote">
+        "Most companies don't have a maintenance problem.<br>They have a <em>visibility problem.</em>"
+      </div>
+      <p class="insight-body">
+        Walk into most industrial facilities, and you'll find capable technicians, willing supervisors, and a genuine desire to run equipment better. What's missing isn't effort — it's structured information. Without a functioning CMMS, work history disappears after every job. Patterns go unnoticed. The same failures repeat. Resources get allocated reactively rather than strategically. The shift from reactive to proactive maintenance doesn't start with a reliability strategy. It starts with being able to see what's actually happening. Visibility comes first. Everything else follows.
+      </p>
+      <div class="insight-author">
+        <div class="author-line"></div>
+        <span class="author-name">IYETU BARILOGI · Maintenance &amp; Reliability Engineer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's <span>Work Together</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <h3 class="contact-headline">Let's discuss how to improve your <span>maintenance systems.</span></h3>
+        <p class="contact-sub">Whether you're starting a CMMS implementation, trying to reduce reactive maintenance, or looking to build a reliability function from the ground up — I'm available for project engagements, consulting, and advisory roles.</p>
+        <div class="contact-links">
+          <a href="mailto:iyetubarilogi@gmail.com" class="contact-link">
+            <span class="c-icon">✉</span> iyetubarilogi@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/iyetu/" target="_blank" class="contact-link">
+            <span class="c-icon" style="font-family:sans-serif;font-weight:700;font-size:0.85rem">in</span> linkedin.com/in/yourprofile
+          </a>
+          <a href="tel:+2348103178374" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2h3l1.5 3.5-1.8 1.2A9 9 0 0 0 10.3 11l1.2-1.8L15 10.7V14A1 1 0 0 1 14 15C7.4 15 3 10.6 3 4a1 1 0 0 1 1-2z" stroke="#8a9bb5" stroke-width="1.4" fill="none"/></svg>
+            </div>
+            +2348103178374
+          </a>
+          <div class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7c0 4 5 9 5 9s5-5 5-9c0-2.76-2.24-5-5-5z" stroke="#8a9bb5" stroke-width="1.4" fill="none"/><circle cx="9" cy="7" r="1.8" stroke="#8a9bb5" stroke-width="1.4" fill="none"/></svg>
+            </div>
+            Rivers State, Nigeria
+          </div>
+          <a href="#" class="contact-link">
+            <span class="c-icon">📄</span> Download CV / Resume
+          </a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+          <div class="form-field">
+            <label for="contactName">Full Name</label>
+            <input type="text" id="contactName" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-field">
+            <label for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" name="email" placeholder="john@company.com" required>
+          </div>
+          <div class="form-field">
+            <label for="contactReason">Reason for Contact</label>
+            <select id="contactReason" name="reason" required>
+              <option value="">Select a reason</option>
+              <option value="cmms">CMMS Implementation</option>
+              <option value="reliability">Reliability Engineering</option>
+              <option value="consulting">Maintenance Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" rows="4" placeholder="Briefly describe your maintenance challenge or project..."></textarea>
+          </div>
+          <div id="contactSuccess" style="display:none; color:#27ae60; font-weight:600; margin-bottom:12px;">
+            ✓ Message sent! Check your inbox for a confirmation email.
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">IYETU<span>.</span>BARILOGI</div>
+    <div class="footer-tag">Maintenance &amp; Reliability Engineer · CMMS Specialist · Asset Performance</div>
+
+    <form id="subscribeForm" onsubmit="handleSubscribeSubmit(event)" style="margin: 18px auto; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; max-width:440px;">
+      <input type="email" id="subscribeEmail" placeholder="Your email address" required
+        style="flex:1; min-width:200px; padding:10px 14px; border-radius:6px; border:1px solid #334; background:#0d1f33; color:#e0e8f0; font-size:14px;">
+      <button type="submit" id="subscribeBtn"
+        style="padding:10px 20px; background:var(--accent,#3b82f6); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:14px;">
+        Subscribe
+      </button>
+    </form>
+    <div id="subscribeSuccess" style="display:none; color:#27ae60; font-weight:600; font-size:14px; text-align:center; margin-bottom:10px;">
+      ✓ Subscribed! Check your inbox for a welcome email.
+    </div>
+
+    <div class="footer-year">© 2026 — All Rights Reserved</div>
+  </div>
+</footer>
+
+<!-- ===================== JS ===================== -->
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Hero reveals on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 100 + i * 160);
+    });
+  });
+
+  // Nav scroll tint
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if(nav) nav.style.background = window.scrollY > 60 ? 'rgba(7,15,26,0.98)' : 'rgba(11,25,41,0.92)';
+  });
+
+  // Counter animation
+  function animCounter(el, target, suffix) {
+    let start = null;
+    const dur = 1800;
+    const step = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = Math.floor(ease * target);
+      el.textContent = val + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const metricSection = document.getElementById('metrics');
+  let metricsAnimated = false;
+  if(metricSection) {
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !metricsAnimated) {
+        metricsAnimated = true;
+        const items = [
+          { t: 40, s: '% ↓' },
+          { t: 85, s: '% ↑' },
+          { t: 92, s: '% ↑' },
+          { t: 3,  s: '×' },
+        ];
+        document.querySelectorAll('.metric-val').forEach((el, i) => {
+          if (items[i]) setTimeout(() => animCounter(el, items[i].t, items[i].s), i * 100);
+        });
+      }
+    }, { threshold: 0.5 }).observe(metricSection);
+  }
+
+  // Contact form handler
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const successMsg = document.getElementById('contactSuccess');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    successMsg.style.display = 'none';
+
+    try {
+      const formData = {
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        reason: document.getElementById('contactReason').value,
+        message: document.getElementById('contactMessage').value
+      };
+
+      const response = await fetch('/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        successMsg.style.display = 'block';
+        e.target.reset();
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      } else {
+        alert('Error: ' + (result.error || 'Something went wrong. Please try again.'));
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to connect. Please check your internet and try again.');
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    }
+  }
+
+  // Subscribe form handler
+  async function handleSubscribeSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('subscribeBtn');
+    const successMsg = document.getElementById('subscribeSuccess');
+    const email = document.getElementById('subscribeEmail').value;
+    btn.textContent = 'Subscribing...';
+    btn.disabled = true;
+    successMsg.style.display = 'none';
+
+    try {
+      const response = await fetch('/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        successMsg.style.display = 'block';
+        e.target.reset();
+        btn.textContent = 'Subscribe';
+        btn.disabled = false;
+      } else {
+        alert('Error: ' + (result.error || 'Could not subscribe. Please try again.'));
+        btn.textContent = 'Subscribe';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to connect. Please try again.');
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html> 
