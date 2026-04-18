@@ -1,15 +1,12 @@
 export async function onRequestPost({ request, env }) {
   try {
     const { name, email, reason, message } = await request.json();
-
     if (!name || !email || !reason || !message) {
       return new Response(JSON.stringify({ error: 'All fields are required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
-    // Store in Supabase (using service role key to bypass RLS)
     const supabaseResponse = await fetch(`${env.SUPABASE_URL}/rest/v1/contact_submissions`, {
       method: 'POST',
       headers: {
@@ -20,12 +17,9 @@ export async function onRequestPost({ request, env }) {
       },
       body: JSON.stringify({ name, email, reason, message })
     });
-
     if (!supabaseResponse.ok) {
       console.error('Supabase error:', await supabaseResponse.text());
     }
-
-    // Email 1: Notify site owner
     const ownerEmailResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -33,7 +27,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-       from: 'Iyetu Barilogi <noreply@iyetubarilogi.pages.dev>',
+        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
         to: ['iyetubarilogi@gmail.com'],
         subject: `New Contact Form Submission: ${reason}`,
         html: `
@@ -48,7 +42,6 @@ export async function onRequestPost({ request, env }) {
         `
       })
     });
-
     if (!ownerEmailResponse.ok) {
       console.error('Resend owner email error:', await ownerEmailResponse.text());
       return new Response(JSON.stringify({ error: 'Failed to send notification email' }), {
@@ -56,8 +49,6 @@ export async function onRequestPost({ request, env }) {
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
-    // Email 2: Thank-you to the user
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -65,7 +56,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Iyetu Barilogi <onboarding@resend.dev>',
+        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
         to: [email],
         subject: "Thanks for reaching out — I'll be in touch soon",
         html: `
@@ -81,12 +72,10 @@ export async function onRequestPost({ request, env }) {
         `
       })
     });
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
-
   } catch (error) {
     console.error('Contact function error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
