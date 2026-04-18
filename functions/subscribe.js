@@ -1,12 +1,15 @@
 export async function onRequestPost({ request, env }) {
   try {
     const { email } = await request.json();
+
     if (!email || !email.includes('@')) {
       return new Response(JSON.stringify({ error: 'Valid email is required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
+
+    // Store in Supabase
     const supabaseResponse = await fetch(`${env.SUPABASE_URL}/rest/v1/subscribers`, {
       method: 'POST',
       headers: {
@@ -20,6 +23,7 @@ export async function onRequestPost({ request, env }) {
         subscribed_at: new Date().toISOString()
       })
     });
+
     if (!supabaseResponse.ok) {
       const errorText = await supabaseResponse.text();
       if (!errorText.includes('duplicate key') && !errorText.includes('unique')) {
@@ -30,60 +34,37 @@ export async function onRequestPost({ request, env }) {
         });
       }
     }
-    await fetch('https://api.resend.com/emails', {
+
+    // Notify owner via Web3Forms
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
-        to: ['iyetubarilogi@gmail.com'],
+        access_key: '21a33d17-0162-4526-a6c6-c8a0992bc83c',
         subject: 'New Newsletter Subscriber',
-        html: `
-          <h2>New Subscriber!</h2>
-          <p><strong>${email}</strong> just subscribed to your newsletter.</p>
-          <hr>
-          <p style="color:#888;font-size:12px;">Via your portfolio subscribe form.</p>
-        `
+        from_name: 'Website Notification',
+        message: `New subscriber: ${email}`
       })
     });
-    const welcomeResponse = await fetch('https://api.resend.com/emails', {
+
+    // Send welcome email to subscriber via Web3Forms
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Iyetu Barilogi <noreply@guebiopren.resend.app>',
-        to: [email],
+        access_key: '21a33d17-0162-4526-a6c6-c8a0992bc83c',
         subject: 'Welcome to My Maintenance & Reliability Newsletter',
-        html: `
-          <h2>You're subscribed!</h2>
-          <p>Thank you for subscribing to insights on maintenance engineering, CMMS implementation, and reliability best practices.</p>
-          <p>You'll receive occasional updates on:</p>
-          <ul>
-            <li>CMMS deployment strategies</li>
-            <li>Reliability engineering techniques</li>
-            <li>Maintenance optimization tips</li>
-            <li>Industry trends and case studies</li>
-          </ul>
-          <p>Best regards,<br>
-          <strong>Iyetu Barilogi</strong><br>
-          Maintenance &amp; Reliability Engineer</p>
-          <p style="color:#888;font-size:12px;">
-            <a href="mailto:iyetubarilogi@gmail.com?subject=Unsubscribe&body=Please unsubscribe ${encodeURIComponent(email)}">Unsubscribe</a>
-          </p>
-        `
+        from_name: 'Iyetu Barilogi',
+        to: email,
+        message: `You're subscribed!\n\nThank you for subscribing to insights on maintenance engineering, CMMS implementation, and reliability best practices.\n\nBest regards,\nIyetu Barilogi\nMaintenance & Reliability Engineer`
       })
     });
-    if (!welcomeResponse.ok) {
-      console.error('Resend welcome email error:', await welcomeResponse.text());
-    }
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
+
   } catch (error) {
     console.error('Subscribe function error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
