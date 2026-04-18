@@ -2,10 +2,10 @@
 // IMPORTANT: Replace the two values below with your actual Supabase project details.
 // Find them at: https://supabase.com/dashboard → your project → Settings → API
 
-const supabaseUrl = 'YOUR_SUPABASE_URL';       // e.g. https://xyzxyz.supabase.co
-const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';  // the "anon public" key
+const supabaseUrl = 'https://fqgklqqszoddoxaifcjl.supabase.co';       // e.g. https://xyzxyz.supabase.co
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxZ2tscXFzem9kZG94YWlmY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDU0ODcsImV4cCI6MjA5MTk4MTQ4N30.d69rut82ZA-Eah7iH7muU3eqHrgXPLR6YnHM0VzHIF4';  // the "anon public" key
 
-if (!supabaseUrl.startsWith('https://') || supabaseKey === 'YOUR_SUPABASE_ANON_KEY') {
+if (!supabaseUrl.startsWith('https://') || supabaseKey === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxZ2tscXFzem9kZG94YWlmY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDU0ODcsImV4cCI6MjA5MTk4MTQ4N30.d69rut82ZA-Eah7iH7muU3eqHrgXPLR6YnHM0VzHIF4') {
   console.warn('⚠️  app.js: Supabase URL and anon key are not configured. Blog, comments, likes and ratings will not work until you set them.');
 }
 
