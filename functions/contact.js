@@ -33,7 +33,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Website Contact <onboarding@resend.dev>',
+       from: 'Iyetu Barilogi <noreply@iyetubarilogi.pages.dev>',
         to: ['iyetubarilogi@gmail.com'],
         subject: `New Contact Form Submission: ${reason}`,
         html: `
