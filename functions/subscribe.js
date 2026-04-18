@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Website Notifications <onboarding@resend.dev>',
+       from: 'Iyetu Barilogi <noreply@iyetubarilogi.pages.dev>',
         to: ['iyetubarilogi@gmail.com'],
         subject: 'New Newsletter Subscriber',
         html: `
