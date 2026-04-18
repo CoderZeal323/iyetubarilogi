@@ -5,10 +5,6 @@
 const supabaseUrl = 'https://fqgklqqszoddoxaifcjl.supabase.co';       // e.g. https://xyzxyz.supabase.co
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxZ2tscXFzem9kZG94YWlmY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDU0ODcsImV4cCI6MjA5MTk4MTQ4N30.d69rut82ZA-Eah7iH7muU3eqHrgXPLR6YnHM0VzHIF4';  // the "anon public" key
 
-if (!supabaseUrl.startsWith('https://') || supabaseKey === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxZ2tscXFzem9kZG94YWlmY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDU0ODcsImV4cCI6MjA5MTk4MTQ4N30.d69rut82ZA-Eah7iH7muU3eqHrgXPLR6YnHM0VzHIF4') {
-  console.warn('⚠️  app.js: Supabase URL and anon key are not configured. Blog, comments, likes and ratings will not work until you set them.');
-}
-
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 window.supabaseClient = supabase;
 
