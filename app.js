@@ -5,8 +5,8 @@
 const supabaseUrl = 'https://fqgklqqszoddoxaifcjl.supabase.co';       // e.g. https://xyzxyz.supabase.co
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxZ2tscXFzem9kZG94YWlmY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDU0ODcsImV4cCI6MjA5MTk4MTQ4N30.d69rut82ZA-Eah7iH7muU3eqHrgXPLR6YnHM0VzHIF4';  // the "anon public" key
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-window.supabaseClient = supabase;
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+window.supabaseClient = supabaseClient;
 
 // --- Utility functions used across pages ---
 
